@@ -16,7 +16,8 @@ class TableHeader extends Component {
     const { sortColumn } = this.props;
 
     if (column.path !== sortColumn.path) return null;
-    if (sortColumn === 'asc') return <i className='fa fa-sort-asc'></i>;
+    if (sortColumn.order === 'asc') return <i className='fa fa-sort-asc'></i>;
+    return <i className='fa fa-sort-desc'></i>;
   };
 
   render() {
@@ -26,6 +27,7 @@ class TableHeader extends Component {
         <tr>
           {columns.map(column => (
             <th
+              className='clickable'
               key={column.path || column.key}
               onClick={() => this.raiseSort(column.path)}
             >
